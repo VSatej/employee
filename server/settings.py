@@ -83,7 +83,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
          'NAME': 'cargofl_data',
          'USER': 'app_user',
-         'PASSWORD': 'cargofl!',
+         'PASSWORD': 'appdata!',
          'HOST': '127.0.0.1',
          'PORT': '5432',
     }
