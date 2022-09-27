@@ -3,8 +3,8 @@ from django.contrib.auth.models import AbstractUser
 # Create your models here.
 
 GENDER_CATEGORY = (
-    (0, 'Active'),
-    (1, 'Inactive'),
+    (0, 'Male'),
+    (1, 'Female'),
 )
 
 BLOOD_CATEGORY = (

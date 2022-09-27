@@ -4,7 +4,9 @@ from django.contrib.auth.hashers import make_password
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.shortcuts import render,redirect
+from django.views.decorators.csrf import csrf_exempt
 
+@csrf_exempt
 @api_view(['POST'])
 def registerEmployee(request):
     data=request.data
@@ -18,6 +20,7 @@ def registerEmployee(request):
             password=make_password(data['password']))
         serializer = EmployeeSerializer(employee, many=False)
         return Response(serializer.data)
+        # return render(request,'dashboard.html')
     elif Employee.objects.filter(email=data['email']):
         message = {'detail': 'Employee with this Email Already exists'}
         return Response(message)
@@ -43,6 +46,10 @@ def getEmployeeById(request, pk):
 def index(request):
     employees = Employee.objects.all()
     return render(request,'dashboard.html', {'employees':employees})
+
+def viewDetails(request,pk):
+    employees = Employee.objects.get(id=pk)
+    return render(request,'details.html', {'employees':employees})
 
 '''
 {
