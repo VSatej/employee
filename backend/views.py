@@ -6,7 +6,6 @@ from rest_framework.response import Response
 from django.shortcuts import render,redirect
 from django.views.decorators.csrf import csrf_exempt
 
-@csrf_exempt
 @api_view(['POST'])
 def registerEmployee(request):
     data=request.data
