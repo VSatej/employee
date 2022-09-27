@@ -3,10 +3,10 @@ from backend.serializers import EmployeeSerializer
 from django.contrib.auth.hashers import make_password
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from django.shortcuts import render,redirect
 
 @api_view(['POST'])
 def registerEmployee(request):
-    # import ipdb;ipdb.set_trace()
     data=request.data
     if data['name'] is not None:
         employee = Employee.objects.create(
@@ -39,6 +39,10 @@ def getEmployeeById(request, pk):
     employee = Employee.objects.get(id=pk)
     serializer = EmployeeSerializer(employee, many=False)
     return Response(serializer.data)
+
+def index(request):
+    employees = Employee.objects.all()
+    return render(request,'dashboard.html', {'employees':employees})
 
 '''
 {
